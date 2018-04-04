@@ -58,7 +58,6 @@ AndroidManifest.xml 메타데이터 에 키값과 Intent Filter를 입력합니�
             </intent-filter>
  
             <intent-filter>
-                <action android:name="com.jehmi.cp.SCHEME" />
                 <action android:name="android.intent.action.VIEW" />
  
                 <category android:name="android.intent.category.DEFAULT" />

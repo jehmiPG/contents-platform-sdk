@@ -17,6 +17,7 @@ import com.kaopiz.kprogresshud.KProgressHUD
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val userId = "38e5bb27-c795-4"
+        val userId = getUserId()
 
         registerUserIdButton.setOnClickListener {
             val hud = showProgressHUD()
@@ -92,6 +93,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         checkWriteExternalStoragePermission()
+    }
+
+    private fun getUserId(): String {
+        val pref = getSharedPreferences("UserPref", MODE_PRIVATE)
+        var userId = pref.getString("userId", null)
+        if (userId == null) {
+            userId = UUID.randomUUID().toString()
+            pref.edit().putString("userId", userId).apply()
+        }
+
+        return userId
     }
 
     private fun requestPayment(hud: KProgressHUD, userId: String, paymentInfo: DummyPaymentInfo) {

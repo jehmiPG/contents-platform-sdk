@@ -1,6 +1,7 @@
 package com.jehmi.cp.sample;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         logTextView = findViewById(R.id.logTextView);
-        userId = "38e5bb27-c795-4";
+        userId = getUserId();
 
         findViewById(R.id.registerUserIdButton).setOnClickListener(this);
         findViewById(R.id.purchaseItemButton).setOnClickListener(this);
@@ -54,6 +56,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         findViewById(R.id.downloadApkButton).setOnClickListener(this);
 
         checkWriteExternalStoragePermission();
+    }
+
+    private String getUserId() {
+        SharedPreferences pref = getSharedPreferences("UserPref", MODE_PRIVATE);
+        String userId = pref.getString("userId", null);
+        if (userId == null) {
+            userId = UUID.randomUUID().toString();
+            pref.edit().putString("userId", userId).apply();
+        }
+
+        return userId;
     }
 
     private void checkWriteExternalStoragePermission() {
