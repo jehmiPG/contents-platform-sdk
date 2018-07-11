@@ -1,5 +1,5 @@
 # contents-platform-sdk #
-Jehmi Content Platform (이하 JCP)에서 제공하는 Tracking, Biiling API SDK 입니다.
+Jehmi Content Platform (이하 JCP)에서 제공하는 Tracking, Biiling, Store API SDK 입니다.
 
 
 ## API 소개
