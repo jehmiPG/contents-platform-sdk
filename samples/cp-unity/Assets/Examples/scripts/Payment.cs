@@ -11,8 +11,7 @@ public class Payment : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         drawDescription(null);
-        AuthToken authToken = new AuthToken(PaymentParams.apiKey,
-                                            PaymentParams.appKey,
+        AuthToken authToken = new AuthToken(PaymentParams.partnerAppId,
                                             PaymentParams.userId,
                                             PaymentParams.amount,
                                             PaymentParams.country,
@@ -48,7 +47,8 @@ public class Payment : MonoBehaviour {
                          response.language,
                          response.timeZone,
                          backUrl,
-                         new PurchaseCallback(onSuccess, onPending, onError));
+                         new PurchaseCallback(onSuccess, onPending, onError),
+                         PaymentParams.testMode);
         }
     }
 
@@ -74,8 +74,7 @@ public class Payment : MonoBehaviour {
     }
 
     private void drawDescription(AuthResponse response) {
-        string text = String.Format("API KEY : {0}\n\nAPP KEY : {1}\n\nUSER ID : {2}\n\nAMOUNT : {3}\n\nCOUNTRY : {4}\n\nLANGUAGE : {5}\n\nCURRENCY : {6}\n\nITEM ID : {7}\n\nITEM NAME : {8}\n\nBACK URL : {9}",
-                                    PaymentParams.apiKey, PaymentParams.appKey, PaymentParams.userId, PaymentParams.amount, PaymentParams.country, PaymentParams.language, PaymentParams.currency, PaymentParams.itemId, PaymentParams.itemName, PaymentParams.backUrl);
+        string text = String.Format("PARTNER APP ID : {0}\n\nUSER ID : {1}\n\nAMOUNT : {2}\n\nCOUNTRY : {3}\n\nLANGUAGE : {4}\n\nCURRENCY : {5}\n\nITEM ID : {6}\n\nITEM NAME : {7}\n\nBACK URL : {8}\n\nTEST MODE : {9}", PaymentParams.partnerAppId, PaymentParams.userId, PaymentParams.amount, PaymentParams.country, PaymentParams.language, PaymentParams.currency, PaymentParams.itemId, PaymentParams.itemName, PaymentParams.backUrl, PaymentParams.testMode);
 
         if (response != null) {
             text += String.Format("\n\nHASHDATA : {0}\n\nJEHMI AUTH TOKEN : {1}\n\nTRANSACTION ID : {2}",

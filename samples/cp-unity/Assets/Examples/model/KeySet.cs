@@ -3,8 +3,7 @@ using System.Collections;
 
 public class KeySet
 {
-    public static string apiKey = "apiKey";
-    public static string appKey = "appKey";
+    public static string partnerAppId = "partnerAppId";
     public static string hashData = "hashData";
     public static string jehmiAuthToken = "jehmiAuthToken";
     public static string transactionId = "transactionId";

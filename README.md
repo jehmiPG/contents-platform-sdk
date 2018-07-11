@@ -126,11 +126,12 @@ JCP.downloadApk(String title, String description, boolean isOnlyWifi, IErrorCall
 
 
 ## [samples](samples) ##
-java, kotlin, unity 샘플이 제공됩니다.
+java, kotlin, unity, cocos2d-x 샘플이 제공됩니다.
 
 * [cp-android-java](samples/cp-android-java)
 * [cp-android-kotlin](samples/cp-android-kotlin)
 * [cp-unity](samples/cp-unity)
+* [cp-cocos](samples/cp-cocos)
 
 
 
@@ -140,3 +141,4 @@ Gradle 프로젝트가 아닐 경우, 해당 라이브러리를 직접 프로젝
 * common.aar
 * cp.aar
 * unitypackage
+* cpp-bridge.zip

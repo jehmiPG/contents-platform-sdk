@@ -1,12 +1,11 @@
 ﻿using System;
-using Jehmi.Unity.Setting;
+using Jehmi.Unity;
 
 namespace EnumExtension
 {
     public class PreSetData
     {
-        public string apiKey;
-        public string appKey;
+        public string partnerAppId;
         public string amount;
         public string country;
         public string language;
@@ -15,8 +14,7 @@ namespace EnumExtension
         public string itemId;
         public string itemName;
 
-		public PreSetData(string apiKey, 
-                          string appKey, 
+		public PreSetData(string partnerAppId,
                           string amount, 
                           string country, 
                           string language, 
@@ -25,8 +23,7 @@ namespace EnumExtension
                           string itemId, 
 		                  string itemName)
         {
-            this.apiKey = apiKey;
-            this.appKey = appKey;
+            this.partnerAppId = partnerAppId;
             this.amount = amount;
             this.country = country;
             this.language = language;
@@ -43,10 +40,10 @@ namespace EnumExtension
             PreSetData result = null;
             switch (value) {
                 case PreSet.set_1:
-                    result = new PreSetData(JehmiSetting.ApiKey, JehmiSetting.AppKey, "100000", "THA", "ENG", "THB", "UTC", "UnityItem1", "100 Unit");
+                    result = new PreSetData(JCP.PartnerAppId, "100000", "THA", "ENG", "THB", "UTC", "UnityItem1", "100 Unit");
                     break;
                 default :
-                    result = new PreSetData(JehmiSetting.ApiKey, JehmiSetting.AppKey, "100000", "THA", "ENG", "THB", "UTC", "UnityItem1", "100 Unit");
+                    result = new PreSetData(JCP.PartnerAppId, "100000", "THA", "ENG", "THB", "UTC", "UnityItem1", "100 Unit");
                     break;
             }
             return result;

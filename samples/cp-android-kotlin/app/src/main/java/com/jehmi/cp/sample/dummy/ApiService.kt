@@ -25,7 +25,7 @@ interface ApiService {
             val timeZone: String
     )
 
-    @POST("/api/authRequest")
+    @POST("/v1/authRequest")
     fun dummyPaymentInfo(@Body body: Map<String, String>): Observable<DummyPaymentInfo>
 
     companion object {
@@ -40,8 +40,7 @@ interface ApiService {
                     val requestBuilder = original.newBuilder()
                             .addHeader("Connection", "Keep-Alive")
                             .addHeader("User-Agent", JCP.finalUserAgent())
-                            .addHeader(StringKeys.apiKey, JCP.apiKey())
-                            .addHeader(StringKeys.appKey, JCP.appKey())
+                            .addHeader(StringKeys.partnerAppId, JCP.partnerAppId())
                     
                     chain.proceed(requestBuilder.build())
                 }
@@ -51,7 +50,7 @@ interface ApiService {
                 httpClient.addInterceptor(loggingInterceptor)
 
                 service = Retrofit.Builder()
-                        .baseUrl("https://sandbox-cp-test.jehmi.com")
+                        .baseUrl("https://alpha-api-cp-test.jehmi.com")
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create())
                         .client(httpClient.build())

@@ -29,8 +29,7 @@ public class DummyApi {
 
                     requestBuilder.addHeader("Connection", "Keep-Alive")
                             .addHeader("User-Agent", JCP.finalUserAgent())
-                            .addHeader(StringKeys.apiKey, JCP.apiKey())
-                            .addHeader(StringKeys.appKey, JCP.appKey());
+                            .addHeader(StringKeys.partnerAppId, JCP.partnerAppId());
 
                     return chain.proceed(requestBuilder.build());
                 }
@@ -41,7 +40,7 @@ public class DummyApi {
             httpClient.addInterceptor(loggingInterceptor);
 
             service = new Retrofit.Builder()
-                    .baseUrl("https://sandbox-cp-test.jehmi.com")
+                    .baseUrl("https://alpha-api-cp-test.jehmi.com")
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(httpClient.build())

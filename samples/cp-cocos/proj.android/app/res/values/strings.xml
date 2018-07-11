@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">cp-cocos</string>
+
+    <string name="cp_partner_app_id">107</string>
+    <string name="jcp_scheme">jcp107</string>
+    <string name="jcp_host">execute</string>
+
+</resources>

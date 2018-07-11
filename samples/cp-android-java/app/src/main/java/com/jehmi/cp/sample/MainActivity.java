@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jehmi.cp.ErrorResult;
+import com.jehmi.cp.IDownloadCallback;
 import com.jehmi.cp.IErrorCallback;
 import com.jehmi.cp.ILoginCallback;
 import com.jehmi.cp.IPurchaseCallback;
@@ -199,7 +200,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 final String apkTitle = "Sample";
                 final String apkDesc = "CP Application";
 
-                JCP.downloadApk(apkTitle, apkDesc, false, new IErrorCallback() {
+                JCP.downloadApk(apkTitle, apkDesc, false, new IDownloadCallback() {
+                    @Override
+                    public void onDownloadComplete(String uri) {
+                        showToast("Apk download success: " + uri);
+                    }
+
                     @Override
                     public void onError(ErrorResult errorResult) {
                         showToast("downloadApk is error: " + errorResult);
@@ -219,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         final String itemId = "Item001";
         final String itemName = "100 Ruby";
         final String backUrl = "";
+        final Boolean testMode = true;
 
         JCP.purchase(this,
                 paymentInfo.hashData,
@@ -251,6 +258,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                         showToast("purchase is pending.");
                         hud.dismiss();
                     }
-                });
+                }, testMode);
     }
 }

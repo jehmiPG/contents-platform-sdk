@@ -36,18 +36,18 @@
         <category
           android:name="android.intent.category.BROWSABLE" />
         <data
-          android:host="execute"
-          android:scheme="jcp6f254c6c61f5ce5350dd0ca0836ac42fbdd2f6728a83d012c93dcbb4bd51db6a" />
+          android:scheme="jcp1031"
+          android:host="execute" />
       </intent-filter>
     </activity>
     <meta-data
-      android:name="com.jehmi.cp.ApiKey"
-      android:value="48218de218478e0dcdba35cefb3b238b423abcd35e33d9f30ac7d0f3086650dd" />
+      android:name="com.jehmi.cp.Platform"
+      android:value="unity" />
     <meta-data
-      android:name="com.jehmi.cp.AppKey"
-      android:value="6f254c6c61f5ce5350dd0ca0836ac42fbdd2f6728a83d012c93dcbb4bd51db6a" />
+      android:name="com.jehmi.cp.PartnerAppId"
+      android:value="1031" />
     <meta-data
-      android:name="com.jehmi.cp.ExtraUserAgent"
-      android:value="Unity/2017.3.1f1" />
+      android:name="com.jehmi.cp.Flavor"
+      android:value="alpha" />
   </application>
 </manifest>

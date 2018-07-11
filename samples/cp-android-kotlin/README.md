@@ -36,8 +36,7 @@ dependencies {
 App Scheme과 Host는 스토어에 해당앱 설치유무를 판별할때 사용됩니다.
 * scheme의 규칙은 'jcp'를 prefix로 하여 appKey를 뒤에 붙이는 형태입니다. appkey가 1234라고 하였을때 scheme은 'jcp1234'가 됩니다.
 ```xml
-<string name="api_key">발급 받은 ApiKey</string>
-<string name="app_key">발급 받은 AppKey</string>
+<string name="cp_partner_app_id">발급 받은 AppKey</string>
 <string name="jcp_scheme">jcp + 발급 받은 AppKey</string>
 <string name="jcp_host">execute</string>
 ```
@@ -69,8 +68,9 @@ AndroidManifest.xml 메타데이터 에 키값과 Intent Filter를 입력합니�
             </intent-filter>
         </activity>
  
-    <meta-data android:name="com.jehmi.cp.ApiKey" android:value="@string/api_key"/>
-    <meta-data android:name="com.jehmi.cp.AppKey" android:value="@string/app_key"/>
+    <meta-data
+            android:name="com.jehmi.cp.PartnerAppId"
+            android:value="@string/cp_partner_app_id" />
     ...
 </application>
 ```

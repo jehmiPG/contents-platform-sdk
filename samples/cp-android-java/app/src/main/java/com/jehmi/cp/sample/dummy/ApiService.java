@@ -8,6 +8,6 @@ import retrofit2.http.POST;
 
 public interface ApiService {
 
-    @POST("/api/authRequest")
+    @POST("/v1/authRequest")
     Observable<DummyPaymentInfo> dummyPaymentInfo(@Body Map<String, String> body);
 }

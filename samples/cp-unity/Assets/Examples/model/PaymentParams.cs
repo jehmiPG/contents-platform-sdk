@@ -3,8 +3,7 @@ using System.Collections;
 
 public static class PaymentParams
 {
-    public static string apiKey;
-    public static string appKey;
+    public static string partnerAppId;
     public static string userId;
     public static string amount;
     public static string country;
@@ -13,4 +12,5 @@ public static class PaymentParams
     public static string itemId;
     public static string itemName;
     public static string backUrl;
+    public static bool testMode;
 }

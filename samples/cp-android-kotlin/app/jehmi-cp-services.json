@@ -1,0 +1,14 @@
+{
+  "version": "1",
+  "flavor": "alpha",
+  "project_info": {
+  },
+  "app_info": {
+    "platform": "android",
+    "partner_app_id": "107",
+    "scheme": "jcp107",
+    "host": "execute"
+  },
+  "meta_info": [
+  ]
+}

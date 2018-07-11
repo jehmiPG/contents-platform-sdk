@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">CP Sample</string>
-    <string name="cp_api_key">48218de218478e0dcdba35cefb3b238b423abcd35e33d9f30ac7d0f3086650dd</string>
-    <string name="cp_app_key">859c81b7358397a04d9b66821b57046469f506848c16e1c1e7fdda927218c364</string>
-    <string name="jcp_scheme">jcp859c81b7358397a04d9b66821b57046469f506848c16e1c1e7fdda927218c364</string>
+    <string name="cp_partner_app_id">103</string>
+    <string name="jcp_scheme">jcp103</string>
     <string name="jcp_host">execute</string>
 
     <string name="register_user_id">Register UserID</string>

@@ -20,25 +20,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="@string/jcp_host"
-                    android:scheme="@string/jcp_scheme" />
-            </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="com.jehmi.cp.ApiKey"
-            android:value="@string/cp_api_key" />
-        <meta-data
-            android:name="com.jehmi.cp.AppKey"
-            android:value="@string/cp_app_key" />
 
     </application>
 

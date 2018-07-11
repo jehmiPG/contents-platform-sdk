@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
-    public InputField etApiKey;
-    public InputField etAppKey;
+    public InputField etPartnerAppId;
     public InputField etHashData;
     public InputField etAuthToken;
     public InputField etTransactionId;
@@ -25,6 +24,7 @@ public class Main : MonoBehaviour
     public Button btPreset;
     public Button btLogin;
     public Button btPayment;
+    public Button btPaymentTestMode;
     public Button btClearData;
     public Button btAppConfiguration;
     public Button btDownladApk;
@@ -33,7 +33,6 @@ public class Main : MonoBehaviour
     {
         Debug.Log("++ Awake");
         JCP.Debuggable(true);
-        //JCP.Init();
     }
 
     // Update is called once per frame
@@ -45,14 +44,6 @@ public class Main : MonoBehaviour
             {
                 Application.Quit();
             }
-        }
-    }
-
-    public void Text_changed(string text)
-    {
-        if (etApiKey != null)
-        {
-            Debug.Log("etapikey text : " + etApiKey.text);
         }
     }
 
@@ -83,9 +74,19 @@ public class Main : MonoBehaviour
             case 6: // download and install apk
                 string title = "Unity Sample App";
                 string description = "Update new Application";
-                JCP.DownloadApk(title, description, false, new ErrorCallback(onErrorDelegate: onError));
+                JCP.DownloadApk(title, description, false, new DownloadCallback(onDownloadComplete, onError));
+                break;
+            case 7:
+                Debug.Log("++ Payment TestMode Clicked");
+                makePaymentParams(true);
+                SceneManager.LoadScene("PaymentScene", LoadSceneMode.Additive);
                 break;
         }
+    }
+
+    private void onDownloadComplete(string path) 
+    {
+        Debug.Log("++ Unity, onDownloadComplete : " + path);
     }
 
     private void onSuccess(AppInfo appInfo)
@@ -121,10 +122,9 @@ public class Main : MonoBehaviour
         Debug.Log("++ OnSuccess Register User id");
     }
 
-    private void makePaymentParams()
+    private void makePaymentParams(bool testMode = false)
     {
-        PaymentParams.apiKey = etApiKey.text;
-        PaymentParams.appKey = etAppKey.text;
+        PaymentParams.partnerAppId = etPartnerAppId.text;
         PaymentParams.userId = etUserId.text;
         PaymentParams.amount = etAmount.text;
         PaymentParams.country = etCountry.text;
@@ -133,14 +133,14 @@ public class Main : MonoBehaviour
         PaymentParams.itemId = etItemId.text;
         PaymentParams.itemName = etItemName.text;
         PaymentParams.backUrl = etBackUrl.text;
+        PaymentParams.testMode = testMode;
     }
 
     private void clearAll()
     {
         PlayerPrefs.DeleteAll();
 
-        etApiKey.text = String.Empty;
-        etAppKey.text = String.Empty;
+        etPartnerAppId.text = String.Empty;
         etHashData.text = String.Empty;
         etAuthToken.text = String.Empty;
         etTransactionId.text = String.Empty;
@@ -157,8 +157,9 @@ public class Main : MonoBehaviour
     private void setPreSet(PreSet preSet)
     {
         PreSetData data = preSet.getPreSet();
-        etApiKey.text = data.apiKey;
-        etAppKey.text = data.appKey;
+        Debug.Log("++ data : " + data);
+        Debug.Log("++ data.partnerAppId : " + data.partnerAppId);
+        etPartnerAppId.text = data.partnerAppId;
         etAmount.text = data.amount;
         etCountry.text = data.country;
         etLanguage.text = data.language;

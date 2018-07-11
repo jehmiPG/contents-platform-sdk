@@ -89,7 +89,15 @@ class MainActivity : AppCompatActivity() {
             val apkTitle = "Sample"
             val apkDesc = "CP Application"
 
-            JCP.downloadApk(apkTitle, apkDesc, false) { error -> showToast("downloadApk is error: $error") }
+            JCP.downloadApk(apkTitle, apkDesc, false, object : IDownloadCallback {
+                override fun onDownloadComplete(uri: String?) {
+                    showToast("Apk download success: $uri")
+                }
+
+                override fun onError(error: ErrorResult?) {
+                    showToast("downloadApk is error: $error")
+                }
+            })
         }
 
         checkWriteExternalStoragePermission()
@@ -110,6 +118,7 @@ class MainActivity : AppCompatActivity() {
         val itemId = "Item001"
         val itemName = "100 Ruby"
         val backUrl = ""
+        val testMode = true
 
         JCP.purchase(this,
                 paymentInfo.hashData,
@@ -139,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                         showToast("purchase is error: $error")
                         hud.dismiss()
                     }
-                })
+                }, testMode)
     }
 
     private fun checkWriteExternalStoragePermission() {

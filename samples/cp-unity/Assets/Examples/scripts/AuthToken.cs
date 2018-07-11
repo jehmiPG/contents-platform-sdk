@@ -12,11 +12,10 @@ public class AuthToken : RequestResponsable<AuthResponse>
     Dictionary<string, string> param = new Dictionary<string, string>();
     private ResponseDelegate callback = null;
 
-    public AuthToken(string apiKey, string appKey, string userId, string amount, string country, string language, string currency, ResponseDelegate callback) {
+    public AuthToken(string partnerAppId, string userId, string amount, string country, string language, string currency, ResponseDelegate callback) {
         headers.Add("Content-Type", "application/json");
         headers.Add("charset", "UTF-8");
-        headers.Add(KeySet.apiKey, apiKey);
-        headers.Add(KeySet.appKey, appKey);
+        headers.Add(KeySet.partnerAppId, partnerAppId);
 
         param.Add(KeySet.userId, userId);
         param.Add(KeySet.amount, amount);
@@ -44,7 +43,7 @@ public class AuthToken : RequestResponsable<AuthResponse>
 
     public string getUrl()
     {
-        return "https://sandbox-cp-test.jehmi.com/api/authRequest";
+        return "https://sandbox-cp-test.jehmi.com/api/v1/authRequest";
     }
 
     public AuthResponse Convert(byte[] datas)
