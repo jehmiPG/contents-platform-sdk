@@ -15,21 +15,38 @@
 * 등록된 UserId는 사용자 식별용도로 사용됩니다.
 * 해당앱 유저 관리에 사용됩니다. 앱 유저 생성 또는 변경 시 호출해야 합니다.
 
+Java
 ```java
 JCP.registerUserId(
-        "user_id",
+        "user_id", 
         new ILoginCallback() {
             @Override
             public void onSuccess() {
                 // 성공 처리.
             }
-         
+            
             @Override
             public void onError(ErrorResult errorResult) {
                 // 에러 처리.
             }
         });
 ```
+
+Kotlin
+```kotlin
+JCP.registerUserId(
+        "user_id", 
+        object : ILoginCallback {
+            override fun onSuccess() {
+                // 성공 처리.
+            }
+
+            override fun onError(error: ErrorResult?) {
+                // 에러 처리.
+            }
+        })
+```
+
 ##### Request Params
 | Name   |   Mandatory  |   Type   | Description |
 |:------:|:---------:|:---------:|:-----------|
@@ -49,6 +66,7 @@ JCP.registerUserId(
 * step 2. 발급된 `transactionId`를 Jehmi Billing Server에 token값을 요청합니다. (server to server)
 * step 3 Jehmi Billing Server로 부터 발급받은 `hashData`과 `jehmiAuthToken`를 결제정보와 함께 SDK에 보냅니다.
 
+Java
 ```java
 JCP.purchase(
         getApplicationContext(),
@@ -81,6 +99,38 @@ JCP.purchase(
             }
         });
 ```
+
+Kotlin
+```kotlin
+JCP.purchase(
+        applicationContext,
+        "your hash data",
+        "input received jehmi auth token",
+        "input your billing transaction token",
+        "your user id",
+        "100",
+        "THA",
+        "ENG",
+        "THB",
+        "UTC",
+        "your item id",
+        "item name",
+        "http://backurl.com",
+        object : IPurchaseCallback {
+            override fun onSuccess() {
+                // 성공 처리.
+            }
+ 
+            override fun onPending() {
+                // 대기 처리.
+            }
+ 
+            override fun onError(error: ErrorResult?) {
+                // 에러 처리.
+            }
+        })
+```
+
 ##### Request Params
 | Name   |   Mandatory  |   Type   | Description |
 |:------:|:---------:|:---------:|:-----------|
@@ -108,6 +158,8 @@ JCP.purchase(
 ### 어플리케이션 정보얻기
 * 등록된 앱에 대한 정보를 요청합니다.
 * 응답으로 전달받은 정보를 토대로, 앱을 업데이트 요청을 하실 수 있습니다.
+
+Java
 ```java
 JCP.getAppInfo(
         new IResultCallback<AppInfo>() {
@@ -123,6 +175,19 @@ JCP.getAppInfo(
         });
 ```
 
+Kotlin
+```kotlin
+JCP.getAppInfo(
+        object : IResultCallback<AppInfo> {
+            override fun onSuccess(appInfo: AppInfo?) {
+                // 성공 처리.
+            }
+
+            override fun onError(error: ErrorResult?) {
+                // 에러 처리.
+            }
+        })
+```
 
 ##### IResultCallback
 | Name  |   Type   | Description |
@@ -145,6 +210,8 @@ JCP.getAppInfo(
 * 다운로드가 완료가 되면 자동으로 설치를 시도합니다.
 * 실제 설치여부를 반환하지는 않습니다.
 * android.permission.WRITE_EXTERNAL_STORAGE 퍼미션이 필요하며, 퍼미션이 없는경우 Error를 반환합니다.
+
+Java
 ```java
 JCP.downloadApk(
         "Downloading My Application",
@@ -162,6 +229,24 @@ JCP.downloadApk(
             }
         });
 ```
+
+Kotlin
+```kotlin
+JCP.downloadApk(
+        "Downloading My Application", 
+        "Now downloading applicion. please wait for seconds", 
+        false, 
+        object : IDownloadCallback {
+            override fun onDownloadComplete(uri: String?) {
+                // 성공 처리.
+            }
+
+            override fun onError(error: ErrorResult?) {
+                // 에러 처리.
+            }
+        })
+```
+
 ##### Request Params
 | Name   |   Mandatory  |   Type   | Description |
 |:------:|:---------:|:---------:|:-----------|
