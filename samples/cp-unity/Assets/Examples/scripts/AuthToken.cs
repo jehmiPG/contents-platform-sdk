@@ -43,7 +43,7 @@ public class AuthToken : RequestResponsable<AuthResponse>
 
     public string getUrl()
     {
-        return "https://sandbox-cp-test.jehmi.com/api/v1/authRequest";
+        return "https://alpha-api-cp-test.jehmi.com/v1/authRequest";
     }
 
     public AuthResponse Convert(byte[] datas)

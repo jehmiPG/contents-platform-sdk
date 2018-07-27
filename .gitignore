@@ -72,3 +72,9 @@ StyleCop.Cache.meta
 
 # Nuget packages
 /packages/
+
+## Custom
+
+*.csproj
+*.sln
+samples/cp-cocos/proj.android/app/.externalNativeBuild

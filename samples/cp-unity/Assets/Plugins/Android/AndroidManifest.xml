@@ -36,7 +36,7 @@
         <category
           android:name="android.intent.category.BROWSABLE" />
         <data
-          android:scheme="jcp1031"
+          android:scheme="jcp73"
           android:host="execute" />
       </intent-filter>
     </activity>
@@ -45,7 +45,7 @@
       android:value="unity" />
     <meta-data
       android:name="com.jehmi.cp.PartnerAppId"
-      android:value="1031" />
+      android:value="73" />
     <meta-data
       android:name="com.jehmi.cp.Flavor"
       android:value="alpha" />
